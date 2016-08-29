@@ -1,4 +1,4 @@
-package com.dgh.study;
+package com.dgh.study.factory;
 
 /**
  * @author guohang.ding on 16-8-29
