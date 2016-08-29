@@ -15,8 +15,6 @@ hs_err_pid*
 
 # maven ignore
 target/
-*.jar
-*.war
 *.zip
 *.tar
 *.tar.gz

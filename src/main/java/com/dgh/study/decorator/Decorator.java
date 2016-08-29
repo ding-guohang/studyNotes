@@ -4,6 +4,10 @@ import com.dgh.study.common.Component;
 
 /**
  * Abstract Decorator
+ * implements Component 是为了装饰器可以装饰装饰器
+ * 但是其实可以抽出来一个Invoker，让Component扮演
+ *
+ * Filter其实也是一种装饰器模型
  * @author guohang.ding on 16-8-29
  */
 public abstract class Decorator implements Component{
