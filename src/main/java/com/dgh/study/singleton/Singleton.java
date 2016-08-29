@@ -12,7 +12,10 @@ package com.dgh.study.singleton;
  * 2、全局的访问点
  * 3、创建对象消耗资源过多（比如IO、DB）
  *
- * 如果外界使用反射newInstance初始化，会出现Compilation failed: internal java compiler error
+ * 如果外部使用反射构造方法初始化
+ * @see java.lang.NoSuchMethodException
+ * 如果外部使用反射newInstance初始化
+ * @see java.lang.IllegalAccessException
  *
  * @author guohang.ding on 16-8-29
  */

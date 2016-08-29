@@ -1,5 +1,7 @@
 package com.dgh.study.factory;
 
+import com.dgh.study.singleton.Singleton;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
@@ -12,8 +14,6 @@ public class Factory {
     }
 
     public static void main(String[] args) throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
-        System.out.println("..");
-        /*Constructor method2 = Factory.class.getConstructor();
-        method2.newInstance();*/
+        Singleton.class.newInstance();
     }
 }
