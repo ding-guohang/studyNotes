@@ -1,7 +1,5 @@
 package com.dgh.study.decorator;
 
-import com.dgh.study.common.Component;
-
 /**
  * Abstract Decorator
  * implements Component 是为了装饰器可以装饰装饰器

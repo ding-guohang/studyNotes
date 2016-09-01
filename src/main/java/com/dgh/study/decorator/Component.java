@@ -1,4 +1,4 @@
-package com.dgh.study.common;
+package com.dgh.study.decorator;
 
 /**
  * Common component for all design pattern

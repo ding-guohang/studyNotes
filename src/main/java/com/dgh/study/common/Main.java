@@ -1,5 +1,7 @@
 package com.dgh.study.common;
 
+import com.dgh.study.factory.Factory;
+
 /**
  * Main
  * to test design pattern
@@ -9,5 +11,10 @@ public class Main {
 
     public static void main(String[] args) {
 
+    }
+
+
+    public void abstractFactoryDemo() {
+        Factory factory1 =
     }
 }

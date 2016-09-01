@@ -16,6 +16,7 @@ package com.dgh.study.singleton;
  * @see java.lang.NoSuchMethodException
  * 如果外部使用反射newInstance初始化
  * @see java.lang.IllegalAccessException
+ * 除非 Constructor.setAccessiable(true)
  *
  * 这种方式被成为饿汉式单例，还可以实现为
  * <code>

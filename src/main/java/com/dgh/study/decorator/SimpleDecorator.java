@@ -1,7 +1,5 @@
 package com.dgh.study.decorator;
 
-import com.dgh.study.common.Component;
-
 /**
  * @author guohang.ding on 16-8-29
  */
