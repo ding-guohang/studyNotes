@@ -19,8 +19,9 @@ public class Main {
         GrumpyBoundedBuffer<String> buffer = new GrumpyBoundedBuffer<>(1);
         while (true) {
             try {
-                String ret = buffer.take();
-                System.out.println(ret);
+                buffer.take();
+                System.out.println("finish");
+                return;
             } catch (BufferEmptyException e) {
                 System.out.println("re do");
                 Thread.sleep(1000);
