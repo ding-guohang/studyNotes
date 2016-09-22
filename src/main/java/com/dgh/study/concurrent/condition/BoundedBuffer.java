@@ -33,13 +33,29 @@ public class BoundedBuffer<V> extends BaseBoundedBuffer<V> {
     // 条件谓词 not-empty
     public V take() throws InterruptedException {
         synchronized (this) {
-            while (isEmpty()) {
-                wait();
+            while (isEmpty()) { // use 'while' instead of 'if' -> check conditions after notified
+                wait(); // instead of 'do-while' -> check before wait -> may signal loss
             }
 
             V v = doTake();
             notifyAll();
             return v;
+        }
+    }
+
+    /**
+     * 不那么保守地唤醒
+     * 显而易见的是，只有当缓存从空变为非空时，才需要唤醒take；从满变为不满时，才需要唤醒put
+     */
+    public synchronized void newPut(V v) throws InterruptedException {
+        while (isFull()) {
+            wait();
+        }
+
+        boolean wasEmpty = isEmpty();
+        doPut(v);
+        if (wasEmpty) {
+            notifyAll();
         }
     }
 }
