@@ -8,6 +8,7 @@ package com.dgh.study.concurrent.condition;
  *
  * @author guohang.ding on 16-9-22
  */
+@SuppressWarnings("unused")
 public class BoundedBuffer {
 
 
