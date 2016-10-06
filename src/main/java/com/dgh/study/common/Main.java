@@ -2,6 +2,10 @@ package com.dgh.study.common;
 
 import com.dgh.study.concurrent.condition.GrumpyBoundedBuffer;
 import com.dgh.study.concurrent.exceptions.BufferEmptyException;
+import com.dgh.study.factory.abstractfactory.AbstractFactory;
+import com.dgh.study.factory.abstractfactory.AbstractProduct;
+import com.dgh.study.factory.abstractfactory.CreatorLevel1;
+import com.dgh.study.factory.abstractfactory.CreatorLevel2;
 
 /**
  * Main
@@ -12,7 +16,8 @@ import com.dgh.study.concurrent.exceptions.BufferEmptyException;
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {
-        useGrumpy();
+//        useGrumpy();
+        abstractFactory();
     }
 
     private static void useGrumpy() throws InterruptedException {
@@ -27,6 +32,16 @@ public class Main {
                 Thread.sleep(1000);
             }
         }
+    }
+
+    private static void abstractFactory() {
+        AbstractFactory level1 = new CreatorLevel1();
+        AbstractProduct productA1 = level1.createProductA();
+        AbstractProduct productB1 = level1.createProductB();
+
+        AbstractFactory level2 = new CreatorLevel2();
+        AbstractProduct productA2 = level2.createProductA();
+        AbstractProduct productB2 = level2.createProductB();
     }
 
 }
