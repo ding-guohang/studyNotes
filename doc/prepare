@@ -1,0 +1,18 @@
+exchange orderNo
+
+query payRecords by orderNo and pay_record_0, check if all the parentPayRecord is GO_PAY
+
+【dubbo-Main】IOrderDetailService.query(parentOrderNo)
+
+buildPayOrderInfo
+---injectSubs (营销也是一种子单，但是在支付的时候他不是了～)
+        ---【dubbo-Main】IPayAccountService.query(parentOrderNo)
+        ---主要是数据复制和转换、增加分账信息
+
+---风控数据
+---营销数据
+
+createPayRecord
+---【dubbo-tts_store】查询流水、保存流水
+
+发送一条没有人监听的消息

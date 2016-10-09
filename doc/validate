@@ -1,0 +1,13 @@
+流程和touch仿佛一模一样
+
+abstract check
+---exchange orderNo
+---hasPaidRecord
+---查出【GO_PAY的、同一来源的、最后的】流水记录 => 按理来说，支付前校验的时候，都不需要流水号
+---checkPay
+------【dubbo-Main】IOrderCheckService.checkPay(Request,only no)
+------common/heDan check fail, cancel all orders if fail
+---if result is success， update pay method
+
+www: 掉单检测延迟消息
+wireLess: storePayForm
