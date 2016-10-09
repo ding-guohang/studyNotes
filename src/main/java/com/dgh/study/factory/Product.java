@@ -10,4 +10,9 @@ public interface Product {
      * common method for all products to implement or use
      */
     public void common();
+
+    /**
+     * do something decided by product type
+     */
+    public void doSomething();
 }

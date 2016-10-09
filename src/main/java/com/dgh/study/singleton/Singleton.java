@@ -21,12 +21,26 @@ package com.dgh.study.singleton;
  * 这种方式被成为饿汉式单例，还可以实现为
  * <code>
  *     public class Singleton {
- *         private static final Singleton singleton = null;
+ *         private static Singleton singleton = null;
  *         private Singleton() {}
  *         public static synchronized Singleton getInstance() {
  *             if (singleton == null) {
  *                 singleton = new Singleton();
  *                 return singleton;
+ *             }
+ *         }
+ *     }
+ *
+ *     // 减少竞争的更好写法
+ *     public class Singleton {
+ *         private static Singleton singleton = null;
+ *         private Singleton() {}
+ *         private static Singleton getInstance() {
+ *             if (singleton == null) {
+ *                 synchronized(singleton) {
+ *                     singleton = new Singleton();
+ *                     return singleton;
+ *                 }
  *             }
  *         }
  *     }
