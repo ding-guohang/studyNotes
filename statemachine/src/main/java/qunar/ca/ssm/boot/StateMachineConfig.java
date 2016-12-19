@@ -99,20 +99,30 @@ public class StateMachineConfig extends EnumStateMachineConfigurerAdapter<StateE
                     .source(StateEnum.State_Two)
                     .event(EventEnum.Event_Two)
                     .and()
-                .withLocal()// 不会转换到子状态, Still State_One excuse me? 有什么用
+                .withLocal()// 不会转换到子状态, Still State_One, excuse me?
                     .source(StateEnum.State_One)
                     .target(StateEnum.State_One_S2)
                     .event(EventEnum.Event_One_In)
+                    .and()
+                .withLocal()
+                    .source(StateEnum.State_One)
+                    .target(StateEnum.State_Two)
+                    .event(EventEnum.Event_Two_In)
                     .and()
                 .withExternal()
                     .source(StateEnum.State_One_S2)
                     .target(StateEnum.State_One_S1)
                     .event(EventEnum.Event_One_In_2)
                     .and()
-                .withExternal()// to State_One_S2
+                .withExternal()
+                    .source(StateEnum.State_Two)
+                    .target(StateEnum.State_Two_S2)
+                    .event(EventEnum.Event_Two_External_In)
+                    .and()
+                .withExternal()
                     .source(StateEnum.State_One)
-                    .target(StateEnum.State_One_S1)
-                    .event(EventEnum.Event_One_External_In)
+                    .target(StateEnum.State_Two_S2)
+                    .event(EventEnum.Event_Two_External_In)
         ;
     }
 
@@ -125,12 +135,12 @@ public class StateMachineConfig extends EnumStateMachineConfigurerAdapter<StateE
 //                    System.out.println("from == null? " + (from == null) + ", to == null? " + (to == null));
                     return;
                 }
-                System.out.println("State from " + from.getId() + " change to " + to.getId());
+//                System.out.println("State from " + from.getId() + " change to " + to.getId());
             }
 
             @Override
             public void transition(Transition<StateEnum, EventEnum> transition) {
-                System.out.println("transition happened");
+//                System.out.println("transition happened");
             }
         };
     }

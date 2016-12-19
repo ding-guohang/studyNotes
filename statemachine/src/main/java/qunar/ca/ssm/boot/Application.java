@@ -4,6 +4,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.statemachine.StateMachine;
+import org.springframework.statemachine.state.State;
 import qunar.ca.ssm.EventEnum;
 import qunar.ca.ssm.StateEnum;
 
@@ -20,32 +21,40 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        System.out.println("begin to event one");
+
+        State now = enumStateMachine.getState();
         enumStateMachine.sendEvent(EventEnum.Event_One);
-        System.out.println("this state = " + enumStateMachine.getState().getIds());
+        print(now, EventEnum.Event_One, enumStateMachine.getState());
 
-        System.out.println("begin to event two");
-        enumStateMachine.sendEvent(EventEnum.Event_Two);
-        System.out.println("this state = " + enumStateMachine.getState().getIds());
-
-        System.out.println("begin to event one");
+        now = enumStateMachine.getState();
         enumStateMachine.sendEvent(EventEnum.Event_One);
-        System.out.println("this state = " + enumStateMachine.getState().getIds() + " " + enumStateMachine.getState().isSubmachineState());
+        print(now, EventEnum.Event_One, enumStateMachine.getState());
 
-        System.out.println("begin to event one in");
+        now = enumStateMachine.getState();
         enumStateMachine.sendEvent(EventEnum.Event_One_In);
-        System.out.println("this state = " + enumStateMachine.getState().getIds() + " " + enumStateMachine.getState().isSubmachineState());
+        print(now, EventEnum.Event_One_In, enumStateMachine.getState());
 
-        System.out.println("begin to event one in 2");
+        now = enumStateMachine.getState();
         enumStateMachine.sendEvent(EventEnum.Event_One_In_2);
-        System.out.println("this state = " + enumStateMachine.getState().getIds() + " " + enumStateMachine.getState().isSubmachineState());
+        print(now, EventEnum.Event_One_In_2, enumStateMachine.getState());
 
-        System.out.println("begin to event one external in");
-        enumStateMachine.sendEvent(EventEnum.Event_One_External_In);
-        System.out.println("this state = " + enumStateMachine.getState().getIds() + " " + enumStateMachine.getState().isSubmachineState());
+        now = enumStateMachine.getState();
+        enumStateMachine.sendEvent(EventEnum.Event_Two_In);
+        print(now, EventEnum.Event_Two_In, enumStateMachine.getState());
+
+        now = enumStateMachine.getState();
+        enumStateMachine.sendEvent(EventEnum.Event_Two_External_In);
+        print(now, EventEnum.Event_Two_External_In, enumStateMachine.getState());
     }
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
+    }
+
+    private static void print(State before, EventEnum event, State now) {
+        String template = "this state is %s, use event %s, end is %s, is sub state?%s";
+
+        System.out.println(String.format(template, before.getId(), event,
+                now.getId(), now.isSubmachineState()));
     }
 }

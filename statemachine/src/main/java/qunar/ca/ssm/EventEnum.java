@@ -8,6 +8,7 @@ public enum EventEnum {
     Event_One,
     Event_Two,
     Event_One_In,
-    Event_One_External_In,
-    Event_One_In_2
+    Event_Two_External_In,
+    Event_One_In_2,
+    Event_Two_In
 }
