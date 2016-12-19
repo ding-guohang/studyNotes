@@ -6,5 +6,10 @@ package qunar.ca.ssm;
 public enum StateEnum {
 
     State_One,
-    State_Two
+    State_One_S1,
+    State_One_S2,
+    State_Two,
+    State_Two_S1,
+    State_Two_S2,
+    State_End
 }
