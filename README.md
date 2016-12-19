@@ -1,2 +1,3 @@
 # studyNotes
-to study and note.
+
+to learn and note.
