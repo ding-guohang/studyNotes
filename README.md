@@ -1,2 +1,2 @@
-# designPattern
-to study design patterns
+# studyNotes
+to study and note.
