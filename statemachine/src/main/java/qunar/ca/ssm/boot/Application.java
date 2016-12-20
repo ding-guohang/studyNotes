@@ -45,6 +45,18 @@ public class Application implements CommandLineRunner {
         now = enumStateMachine.getState();
         enumStateMachine.sendEvent(EventEnum.Event_Two_External_In);
         print(now, EventEnum.Event_Two_External_In, enumStateMachine.getState());
+        //**************** for guard and action **********************************
+        now = enumStateMachine.getState();
+        enumStateMachine.sendEvent(EventEnum.Event_Guard_1);
+        print(now, EventEnum.Event_Guard_1, enumStateMachine.getState());
+
+        now = enumStateMachine.getState();
+        enumStateMachine.sendEvent(EventEnum.Event_Guard_3);
+        print(now, EventEnum.Event_Guard_3, enumStateMachine.getState());
+
+        now = enumStateMachine.getState();
+        enumStateMachine.sendEvent(EventEnum.Event_Guard_2);
+        print(now, EventEnum.Event_Guard_2, enumStateMachine.getState());
     }
 
     public static void main(String[] args) {

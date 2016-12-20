@@ -2,6 +2,8 @@ package qunar.ca.ssm.boot;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.statemachine.StateContext;
+import org.springframework.statemachine.action.Action;
 import org.springframework.statemachine.config.EnableStateMachine;
 import org.springframework.statemachine.config.EnumStateMachineConfigurerAdapter;
 import org.springframework.statemachine.config.builders.StateMachineConfigBuilder;
@@ -9,6 +11,7 @@ import org.springframework.statemachine.config.builders.StateMachineConfiguratio
 import org.springframework.statemachine.config.builders.StateMachineModelConfigurer;
 import org.springframework.statemachine.config.builders.StateMachineStateConfigurer;
 import org.springframework.statemachine.config.builders.StateMachineTransitionConfigurer;
+import org.springframework.statemachine.guard.Guard;
 import org.springframework.statemachine.listener.StateMachineListener;
 import org.springframework.statemachine.listener.StateMachineListenerAdapter;
 import org.springframework.statemachine.state.State;
@@ -123,6 +126,27 @@ public class StateMachineConfig extends EnumStateMachineConfigurerAdapter<StateE
                     .source(StateEnum.State_One)
                     .target(StateEnum.State_Two_S2)
                     .event(EventEnum.Event_Two_External_In)
+                    .and()
+                .withExternal()
+                    .source(StateEnum.State_Two_S2)
+                    .target(StateEnum.State_Two_S1)
+                    .event(EventEnum.Event_Guard_1)
+                    .guard(guard())// guard
+                    .action(action())
+                    .and()
+                .withExternal()
+                    .source(StateEnum.State_Two_S2)
+                    .target(StateEnum.State_Two_S1)
+                    .event(EventEnum.Event_Guard_3)
+                    .guardExpression("false")// guardExpression by SPeL, @see SpelExpressionGuard
+                    .action(action())
+                    .and()
+                .withExternal()
+                    .source(StateEnum.State_Two_S2)
+                    .target(StateEnum.State_Two_S1)
+                    .event(EventEnum.Event_Guard_2)
+                    .guard(guard())
+                    .action(action())
         ;
     }
 
@@ -142,6 +166,39 @@ public class StateMachineConfig extends EnumStateMachineConfigurerAdapter<StateE
             public void transition(Transition<StateEnum, EventEnum> transition) {
 //                System.out.println("transition happened");
             }
+
+            @Override
+            public void transitionEnded(Transition<StateEnum, EventEnum> transition) {
+                System.out.println("transition end");
+            }
+
+            @Override
+            public void transitionStarted(Transition<StateEnum, EventEnum> transition) {
+                System.out.println("transition start");
+            }
         };
     }
+
+    @Bean
+    public Guard<StateEnum, EventEnum> guard() {
+        return new Guard<StateEnum, EventEnum>() {
+            @Override
+            public boolean evaluate(StateContext<StateEnum, EventEnum> context) {
+//                System.out.println("in guard " + context.getEvent());
+                return context.getEvent() == EventEnum.Event_Guard_2;
+            }
+        };
+    }
+
+    @Bean
+    public Action<StateEnum, EventEnum> action() {
+        return new Action<StateEnum, EventEnum>() {
+            @Override
+            public void execute(StateContext<StateEnum, EventEnum> context) {
+                System.out.println("do action when event is " + context.getEvent()
+                + ", trigger is " + context.getTransition().getTrigger());
+            }
+        };
+    }
+
 }
