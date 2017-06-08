@@ -1,7 +1,7 @@
 package com.dgh.study.serialize;
 
-import com.alibaba.com.caucho.hessian.io.Hessian2Input;
-import com.alibaba.com.caucho.hessian.io.Hessian2Output;
+//import com.alibaba.com.caucho.hessian.io.Hessian2Input;
+//import com.alibaba.com.caucho.hessian.io.Hessian2Output;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -51,7 +51,7 @@ public class HessianTest {
 
     public void testName() throws Exception {
 
-        File file = new File("./aaa");
+        /*File file = new File("./aaa");
         FileOutputStream os = new FileOutputStream(file);
         Hessian2Output output = new Hessian2Output(os);
 
@@ -69,7 +69,7 @@ public class HessianTest {
         prod = (Prod) is.readObject(Prod.class);
         base = prod;
         System.out.println(base.getBussnessFlag());
-        System.out.println(prod.getBussnessFlag());
+        System.out.println(prod.getBussnessFlag());*/
     }
 
     public static void main(String[] args) throws Exception {
