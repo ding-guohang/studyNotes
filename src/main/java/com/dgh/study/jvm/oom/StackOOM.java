@@ -3,6 +3,9 @@ package com.dgh.study.jvm.oom;
 /**
  * 创建线程导致内存溢出
  * VM Args: -Xss2M
+ * <p>
+ * Result:
+ * Exception in thread "main" java.lang.OutOfMemoryError: unable to create new native thread
  *
  * @author guohang.ding on 2017/6/12.
  */
