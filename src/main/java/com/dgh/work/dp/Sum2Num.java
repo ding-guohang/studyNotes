@@ -1,8 +1,21 @@
 package com.dgh.work.dp;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Sum2Num {
 
     public int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> cache = new HashMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            int aim = target - nums[i];
+            if (cache.containsKey(aim)) {
+                return new int[] {i, cache.get(aim)};
+            }
+
+            cache.put(nums[i], i);
+        }
         return null;
     }
 
